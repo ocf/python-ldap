@@ -124,7 +124,7 @@ class LDIFWriter:
     returns 1 if attr_value has to be base-64 encoded because
     of special chars or because attr_type is in self._base64_attrs
     """
-    return self._base64_attrs.has_key(attr_type.lower()) or \
+    return attr_type.lower() in self._base64_attrs or \
            not safe_string_re.search(attr_value) is None
 
   def _unparseAttrTypeandValue(self,attr_type,attr_value):
@@ -328,7 +328,7 @@ class LDIFParser:
       attr_value = None
       if self._process_url_schemes:
         u = urlparse.urlparse(url)
-        if self._process_url_schemes.has_key(u[0]):
+        if u[0] in self._process_url_schemes:
           attr_value = urllib.urlopen(url).read()
     elif value_spec==':\r\n' or value_spec=='\n':
       attr_value = ''
@@ -366,13 +366,13 @@ class LDIFParser:
             raise ValueError('Read changetype: before getting valid dn: line.')
           if changetype!=None:
             raise ValueError('Two lines starting with changetype: in one record.')
-          if not valid_changetype_dict.has_key(attr_value):
+          if attr_value not in valid_changetype_dict:
             raise ValueError('changetype value %s is invalid.' % (repr(attr_value)))
           changetype = attr_value
         elif attr_value!=None and \
-             not self._ignored_attr_types.has_key(attr_type.lower()):
+             attr_type.lower() not in self._ignored_attr_types:
           # Add the attribute to the entry if not ignored attribute
-          if entry.has_key(attr_type):
+          if attr_type in entry:
             entry[attr_type].append(attr_value)
           else:
             entry[attr_type]=[attr_value]
