@@ -4,6 +4,7 @@ Released 2.4.16 2014-xx-xx
 Changes since 2.4.16:
 
 Lib/
+* New convenience function ldap.dn.is_dn()
 
 Modules/
 

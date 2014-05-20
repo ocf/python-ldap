@@ -108,3 +108,16 @@ def explode_rdn(rdn,notypes=0,flags=0):
     return [avalue or '' for atype,avalue,dummy in rdn_decomp]
   else:
     return ['='.join((atype,escape_dn_chars(avalue or ''))) for atype,avalue,dummy in rdn_decomp]
+
+
+def is_dn(s):
+  """
+  Returns True is `s' can be parsed by ldap.dn.dn2str() like as a
+  distinguished host_name (DN), otherwise False is returned.
+  """
+  try:
+    dn2str(s)
+  except Exception:
+    return False
+  else:
+    return True
