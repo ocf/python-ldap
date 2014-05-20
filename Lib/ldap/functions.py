@@ -24,7 +24,7 @@ __all__ = [
   'open','initialize','init',
   'explode_dn','explode_rdn',
   'get_option','set_option',
-  'escape_string',
+  'escape_str',
 ]
 
 import sys,pprint,_ldap,ldap
