@@ -5,6 +5,7 @@ Changes since 2.4.16:
 
 Lib/
 * New convenience function ldap.dn.is_dn()
+* New convenience function ldap.escape_str()
 
 Modules/
 

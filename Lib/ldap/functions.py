@@ -24,6 +24,7 @@ __all__ = [
   'open','initialize','init',
   'explode_dn','explode_rdn',
   'get_option','set_option',
+  'escape_string',
 ]
 
 import sys,pprint,_ldap,ldap
@@ -130,3 +131,12 @@ def set_option(option,invalue):
   Set the value of an LDAP global option.
   """
   return _ldap_function_call(None,_ldap.set_option,option,invalue)
+
+
+def escape_str(escape_func,s,*args):
+  """
+  Applies escape_func() to all items of `args' and returns a string based 
+  on format string `s'.
+  """
+  escape_args = map(escape_func,args)
+  return s % tuple(escape_args)
