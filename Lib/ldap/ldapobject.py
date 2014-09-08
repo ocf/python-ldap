@@ -826,7 +826,7 @@ class ReconnectLDAPObject(SimpleLDAPObject):
           self._restore_options()
           # StartTLS extended operation in case this was called before
           if self._start_tls:
-            self.start_tls_s()
+            SimpleLDAPObject.start_tls_s()
           # Repeat last simple or SASL bind
           self._apply_last_bind()
         except (ldap.SERVER_DOWN,ldap.TIMEOUT),e:

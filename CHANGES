@@ -8,6 +8,8 @@ Lib/
 * New convenience function ldap.escape_str()
 * New convenience methods LDAPObject.read_s() and
   LDAPObject.find_unique_entry()
+* Fixed invoking start_tls_s() in ReconnectLDAPObject.reconnect()
+  (thanks to Philipp Hahn)
 
 Modules/
 
