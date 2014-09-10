@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Released 2.4.16 2014-xx-xx
+Released 2.4.16 2014-09-10
 
-Changes since 2.4.16:
+Changes since 2.4.15:
 
 Lib/
 * New convenience function ldap.dn.is_dn()
@@ -10,8 +10,6 @@ Lib/
   LDAPObject.find_unique_entry()
 * Fixed invoking start_tls_s() in ReconnectLDAPObject.reconnect()
   (thanks to Philipp Hahn)
-
-Modules/
 
 ----------------------------------------------------------------
 Released 2.4.15 2014-03-24
