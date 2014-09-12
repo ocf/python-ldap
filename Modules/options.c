@@ -236,6 +236,7 @@ LDAP_get_option(LDAPObject *self, int option)
     case LDAP_OPT_PROTOCOL_VERSION:
     case LDAP_OPT_ERROR_NUMBER:
     case LDAP_OPT_DEBUG_LEVEL:
+    case LDAP_OPT_DESC:
 #ifdef HAVE_TLS
     case LDAP_OPT_X_TLS:
     case LDAP_OPT_X_TLS_REQUIRE_CERT:

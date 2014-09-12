@@ -7,7 +7,8 @@ Lib/
 * 
 
 Modules/
-* 
+* Added support for getting file descriptor of connection
+  with ldap.OPT_DESC
 
 ----------------------------------------------------------------
 Released 2.4.16 2014-09-10
