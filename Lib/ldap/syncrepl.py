@@ -330,6 +330,11 @@ class SyncreplConsumer:
         self.__refreshDone = False
         return self.search_ext(base, scope, **search_args)
 
+    def _syncrepl_update_refreshdone(self, newvalue):
+        callback = newvalue and not self.__refreshDone
+        self.__refreshDone = newvalue
+        if callback:
+            self.syncrepl_refreshdone()
 
     def syncrepl_poll(self, msgid=-1, timeout=None, all=0):
         """
@@ -394,12 +399,12 @@ class SyncreplConsumer:
                         self.syncrepl_present(None, refreshDeletes=False)
                         if 'cookie' in sim.refreshPresent:
                             self.syncrepl_set_cookie(sim.refreshPresent['cookie'])
-                        self.__refreshDone=sim.refreshPresent['refreshDone']
+                        self._syncrepl_update_refreshdone(sim.refreshPresent['refreshDone'])
                     elif sim.refreshDelete is not None:
                         self.syncrepl_present(None, refreshDeletes=True)
                         if 'cookie' in sim.refreshDelete:
                             self.syncrepl_set_cookie(sim.refreshDelete['cookie'])
-                        self.__refreshDone=sim.refreshDelete['refreshDone']
+                        self._syncrepl_update_refreshdone(sim.refreshDelete['refreshDone'])
                     elif sim.syncIdSet is not None:
                         if sim.syncIdSet['refreshDeletes'] is True:
                             self.syncrepl_delete(sim.syncIdSet['syncUUIDs'])
@@ -465,5 +470,14 @@ class SyncreplConsumer:
         any future modification (including dn modification), deletion,
         and presentation operations.
 
+        """
+        pass
+
+    def syncrepl_refreshdone(self):
+        """
+        Called by syncrepl_poll() between refresh and persist phase.
+
+        It indicates that initial synchronization is done and persist phase
+        follows.
         """
         pass
