@@ -316,6 +316,10 @@ class SyncreplConsumer:
         methods to store the cookie appropriately, rather than
         passing it.
 
+        Only a single syncrepl search may be active on a SyncreplConsumer 
+        object.  Multiple concurrent syncrepl searches require multiple 
+        separate SyncreplConsumer objects and thus multiple connections 
+        (LDAPObject instances).
         """
         if cookie is None:
             cookie = self.syncrepl_get_cookie()
