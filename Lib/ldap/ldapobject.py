@@ -663,7 +663,7 @@ class SimpleLDAPObject:
     if r:
       return r[0][1]
     else:
-      return ldap.NO_SUCH_OBJECT('Empty search result reading %s' % (repr(dn)))
+      raise ldap.NO_SUCH_OBJECT('Empty search result reading entry %s' % (repr(dn)))
 
   def read_subschemasubentry_s(self,subschemasubentry_dn,attrs=None):
     """
