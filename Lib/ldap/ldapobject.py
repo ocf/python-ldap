@@ -751,6 +751,7 @@ class ReconnectLDAPObject(SimpleLDAPObject):
     '_l':None,
     '_ldap_object_lock':None,
     '_trace_file':None,
+    '_reconnect_lock':None,
   }
 
   def __init__(
@@ -789,6 +790,7 @@ class ReconnectLDAPObject(SimpleLDAPObject):
     """set up the object from pickled data"""
     self.__dict__.update(d)
     self._ldap_object_lock = self._ldap_lock()
+    self._reconnect_lock = ldap.LDAPLock(desc='reconnect lock within %s' % (repr(self)))
     self._trace_file = sys.stdout
     self.reconnect(self._uri)
 

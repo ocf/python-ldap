@@ -4,7 +4,8 @@ Released 2.4.19 2014-xx-xx
 Changes since 2.4.18:
 
 Lib/
-* 
+* Fixed missing ReconnectLDAPObject._reconnect_lock when pickling
+  (see SF#64, thanks to Dan O'Reilly)
 
 ----------------------------------------------------------------
 Released 2.4.18 2014-10-09
