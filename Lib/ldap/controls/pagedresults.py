@@ -44,7 +44,6 @@ class SimplePagedResultsControl(RequestControl,ResponseControl):
     return encoder.encode(pc)
 
   def decodeControlValue(self,encodedControlValue):
-    print '***',self.__class__.__module__,self.__class__.__name__
     decodedValue,_ = decoder.decode(encodedControlValue,asn1Spec=PagedResultsControlValue())
     self.size = int(decodedValue.getComponentByName('size'))
     self.cookie = str(decodedValue.getComponentByName('cookie'))
