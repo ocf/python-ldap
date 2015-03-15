@@ -76,7 +76,7 @@ for i in range(len(LDAP_CLASS.extra_files)):
   LDAP_CLASS.extra_files[i]=(destdir, origfileslist)
 
 #-- Let distutils/setuptools do the rest
-name = 'python-ldap'
+name = 'python-ldap-ocf'
 
 # Python 2.3.6+ and setuptools are needed to build eggs, so
 # let's handle setuptools' additional  keyword arguments to
@@ -101,7 +101,13 @@ setup(
   from Python programs. Mainly it wraps the OpenLDAP 2.x libs for that purpose.
   Additionally the package contains modules for other LDAP-related stuff
   (e.g. processing LDIF, LDAPURLs, LDAPv3 schema, LDAPv3 extended operations
-  and controls, etc.). 
+  and controls, etc.).
+
+  This fork contains patches, largely by Aymeric Augustin and Raphaël Barrois,
+  to support Python 3.
+
+  The Open Computing Facility packages it for convenience, but the work to port
+  it to Python 3 should be credited to the above.
   """,
   author = 'python-ldap project',
   author_email = 'python-ldap@python.org',
@@ -117,6 +123,8 @@ setup(
     'Operating System :: POSIX',
     'Programming Language :: C',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 3.2',
+    'Programming Language :: Python :: 3.4',
     'Topic :: Database',
     'Topic :: Internet',
     'Topic :: Software Development :: Libraries :: Python Modules',
